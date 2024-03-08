@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CineRateHub.Models
 {
-    public class SeedData
+    public class SeedDataMovies
     {
         //remove price fields, change field type for rating to decimal and add director field and others
         public static void Initialize(IServiceProvider serviceProvider) 
