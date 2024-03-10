@@ -17,25 +17,25 @@ namespace CineRateHub.Models
                     new User
                     {
                         Name = "Jose Carlos Ferrari",
-                        Age = "22",
+                        Age = 22,
                         Job = "Fullstack Developer",
                     },
                     new User
                     {
                         Name = "Hernandes Zanella",
-                        Age = "23",
+                        Age = 23,
                         Job = "Agronomist",
                     },
                     new User
                     {
                         Name = "Leonardo Araujo",
-                        Age = "23",
+                        Age = 23,
                         Job = "Agronomist",
                     },
                      new User
                      {
                          Name = "Juca",
-                         Age = "21",
+                         Age = 21,
                          Job = "Unemployed",
                      }
                     );
