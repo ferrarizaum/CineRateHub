@@ -7,13 +7,13 @@ namespace CineRateHub.Models
     {
         public static void Initialize(IServiceProvider serviceProvider) 
         {
-            using (var _movieContext = new MovieContext(serviceProvider.GetRequiredService<DbContextOptions<MovieContext>>()))
+            using (var _cineRateHubContext = new CineRateHubContext(serviceProvider.GetRequiredService<DbContextOptions<CineRateHubContext>>()))  
             {
-                if(_movieContext.Movie.Any()) 
+                if(_cineRateHubContext.Movie.Any()) 
                 {
                     return;
                 }
-                _movieContext.Movie.AddRange(
+                _cineRateHubContext.Movie.AddRange(
                     new Movie
                     { 
                         Title = "Avatar",
@@ -51,7 +51,7 @@ namespace CineRateHub.Models
                         
                      }
                     );
-                _movieContext.SaveChanges();
+                _cineRateHubContext.SaveChanges();
             }
         
         }

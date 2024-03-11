@@ -12,9 +12,9 @@ namespace CineRateHub.Controllers
 {
     public class MoviesController : Controller
     {
-        private readonly MovieContext _context;
+        private readonly CineRateHubContext _context;
 
-        public MoviesController(MovieContext context)
+        public MoviesController(CineRateHubContext context)
         {
             _context = context;
         }

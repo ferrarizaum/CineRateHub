@@ -7,13 +7,13 @@ namespace CineRateHub.Models
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {
-            using (var _userContext = new UserContext(serviceProvider.GetRequiredService<DbContextOptions<UserContext>>()))
+            using (var _cineRateHubContext = new CineRateHubContext(serviceProvider.GetRequiredService<DbContextOptions<CineRateHubContext>>()))
             {
-                if (_userContext.User.Any())
+                if (_cineRateHubContext.User.Any())
                 {
                     return;
                 }
-                _userContext.User.AddRange(
+                _cineRateHubContext.User.AddRange(
                     new User
                     {
                         Name = "Jose Carlos Ferrari",
@@ -39,7 +39,7 @@ namespace CineRateHub.Models
                          Job = "Unemployed",
                      }
                     );
-                _userContext.SaveChanges();
+                _cineRateHubContext.SaveChanges();
             }
 
         }
