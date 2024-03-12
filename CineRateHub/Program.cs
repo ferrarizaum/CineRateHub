@@ -16,8 +16,8 @@ using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
 
-    SeedDataMovies.Initialize(services);
-    SeedDataUsers.Initialize(services);
+    //SeedDataMovies.Initialize(services);
+    //SeedDataUsers.Initialize(services);
 }
 
 // Configure the HTTP request pipeline.
