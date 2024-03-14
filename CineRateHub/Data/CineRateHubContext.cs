@@ -1,9 +1,10 @@
 ﻿using CineRateHub.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace CineRateHub.Data
 {
-    public class CineRateHubContext : DbContext
+    public class CineRateHubContext : IdentityDbContext
     {
         public CineRateHubContext(DbContextOptions<CineRateHubContext> options)
             : base(options)
@@ -15,6 +16,8 @@ namespace CineRateHub.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Movie>().HasData(
                 new Movie { Id = 1, Title = "Avatar", ReleaseDate = DateTime.Parse("2009-12-18"), Genre = "Action", Director = "James Cameron", Rating = 7.9M },
                 new Movie { Id = 2, Title = "300", ReleaseDate = DateTime.Parse("2007-03-09"), Genre = "Action", Director = "Zack Snyder", Rating = 7.7M },

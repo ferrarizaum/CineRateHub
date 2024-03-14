@@ -1,9 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using CineRateHub.Data;
+using Microsoft.AspNetCore.Identity;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<CineRateHubContext>(options => 
-    options.UseSqlServer(builder.Configuration.GetConnectionString("CineRateHubContext") ?? throw new InvalidOperationException("Connection string 'CineRateHubContext' not found. ")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("CineRateHubContext") 
+    ?? throw new InvalidOperationException("Connection string 'CineRateHubContext' not found. ")));
+
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<CineRateHubContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -29,6 +34,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
