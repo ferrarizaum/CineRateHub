@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using CineRateHub.Data;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.Cookies;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<CineRateHubContext>(options => 
@@ -9,6 +10,14 @@ builder.Services.AddDbContext<CineRateHubContext>(options =>
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     .AddEntityFrameworkStores<CineRateHubContext>();
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options => 
+    {
+        options.Cookie.Name = "AspNetCore.Cookies";
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+        options.SlidingExpiration = true;
+    });
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
