@@ -5,6 +5,7 @@ using CineRateHub.Models;
 
 namespace CineRateHub.Controllers
 {   
+    //implement authorize using roles
     public class MoviesController : Controller
     {
         private readonly CineRateHubContext _context;
@@ -14,6 +15,8 @@ namespace CineRateHub.Controllers
             _context = context;
         }
 
+        //use [AllowAnonymous] for controllers that anyone can see, we can use a
+        //allow anonymous only on those action we want to restrict or remove restriction from actions
         // GET: Movies
         public async Task<IActionResult> Index()
         {
@@ -142,6 +145,14 @@ namespace CineRateHub.Controllers
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        //route for access denied page
+        [HttpGet]
+        [Route("/Account/AccessDenied")]
+        public ActionResult AccessDenied()
+        {
+            return View();
         }
 
         private bool MovieExists(int id)

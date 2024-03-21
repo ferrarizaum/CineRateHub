@@ -8,6 +8,8 @@ namespace CineRateHub.Controllers
 {
     [Authorize]
     //[Authorize(Admin)]
+    //we can use policies for auth like
+    //[Authorize(Policy = "RequireUserAdminGerenteRole")]
     public class UsersController : Controller
     {
         private readonly CineRateHubContext _context;

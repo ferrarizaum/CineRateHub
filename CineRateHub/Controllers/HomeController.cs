@@ -4,6 +4,7 @@ using System.Diagnostics;
 
 namespace CineRateHub.Controllers
 {
+    //implement authorize using roles
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
