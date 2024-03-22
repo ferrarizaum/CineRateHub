@@ -32,8 +32,8 @@ namespace CineRateHub.Controllers
                     UserName = model.Email, 
                     Email = model.Email 
                 };    
-
-                var result = await userManager.CreateAsync(user, model.Password);
+                //review nullable types
+                var result = await userManager.CreateAsync(user, model.Password!);
 
                 if (result.Succeeded) 
                 {
@@ -59,8 +59,8 @@ namespace CineRateHub.Controllers
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
-            {
-                var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+            {   //review nullable types
+                var result = await signInManager.PasswordSignInAsync(model.Email!, model.Password!, model.RememberMe, false);
 
                 if (result.Succeeded)
                 {
