@@ -3,13 +3,14 @@ using CineRateHub.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using CineRateHub.Services;
+using CineRateHub.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<CineRateHubContext>(options => 
     options.UseSqlServer(builder.Configuration.GetConnectionString("CineRateHubContext") 
     ?? throw new InvalidOperationException("Connection string 'CineRateHubContext' not found. ")));
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+builder.Services.AddIdentity<User, IdentityRole>()
     .AddEntityFrameworkStores<CineRateHubContext>();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

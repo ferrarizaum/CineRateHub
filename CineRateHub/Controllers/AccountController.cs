@@ -6,11 +6,11 @@ namespace CineRateHub.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly UserManager<IdentityUser> userManager;
-        private readonly SignInManager<IdentityUser> signInManager;
+        private readonly UserManager<User> userManager;
+        private readonly SignInManager<User> signInManager;
 
-        public AccountController(UserManager<IdentityUser> userManager,
-                                 SignInManager<IdentityUser> signInManager)
+        public AccountController(UserManager<User> userManager,
+                                 SignInManager<User> signInManager)
         {
             this.userManager = userManager;
             this.signInManager = signInManager; 
@@ -27,7 +27,7 @@ namespace CineRateHub.Controllers
         {
             if (ModelState.IsValid) 
             {
-                var user = new IdentityUser
+                var user = new User
                 { 
                     UserName = model.Email, 
                     Email = model.Email 

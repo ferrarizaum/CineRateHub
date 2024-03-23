@@ -26,7 +26,7 @@ namespace CineRateHub.Controllers
         }
 
         // GET: Users/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(string? id)
         {
             if (id == null)
             {
@@ -86,7 +86,7 @@ namespace CineRateHub.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Age,Job")] User user)
+        public async Task<IActionResult> Edit(string id, [Bind("Id,Name,Age,Job")] User user)
         {
             if (id != user.Id)
             {
@@ -117,7 +117,7 @@ namespace CineRateHub.Controllers
         }
 
         // GET: Users/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(string? id)
         {
             if (id == null)
             {
@@ -137,7 +137,7 @@ namespace CineRateHub.Controllers
         // POST: Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var user = await _context.User.FindAsync(id);
             if (user != null)
@@ -149,7 +149,7 @@ namespace CineRateHub.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool UserExists(int id)
+        private bool UserExists(string id)
         {
             return _context.User.Any(e => e.Id == id);
         }

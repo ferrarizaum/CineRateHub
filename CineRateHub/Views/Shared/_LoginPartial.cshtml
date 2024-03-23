@@ -1,5 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SingInManager
+@inject SignInManager<User> SingInManager
 
 @if (SingInManager.IsSignedIn(User))
 {

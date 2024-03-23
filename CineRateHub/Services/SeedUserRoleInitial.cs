@@ -1,13 +1,14 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using CineRateHub.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace CineRateHub.Services
 {
     public class SeedUserRoleInitial : ISeedUserRoleInitial
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<User> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
 
-        public SeedUserRoleInitial(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+        public SeedUserRoleInitial(UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -40,14 +41,17 @@ namespace CineRateHub.Services
         {
             if(await _userManager.FindByEmailAsync("user@gmail.com") == null)
             {
-                IdentityUser user = new IdentityUser();
+                User user = new User();
                 user.UserName = "user@gmail.com";
                 user.Email = "user@gmail.com";
                 user.NormalizedUserName = "USER@GMAIL.COM";
                 user.NormalizedEmail = "USER@GMAIL.COM";
                 user.EmailConfirmed = true;
                 user.LockoutEnabled = false;
-                user.SecurityStamp = Guid.NewGuid().ToString(); 
+                user.SecurityStamp = Guid.NewGuid().ToString();
+                user.Name = "User";
+                user.Age = 22;
+                user.Job = "FullStackDev";
 
                 IdentityResult result = await _userManager.CreateAsync(user, "Numsey#2024");
 
@@ -59,7 +63,7 @@ namespace CineRateHub.Services
 
             if (await _userManager.FindByEmailAsync("admin@gmail.com") == null)
             {
-                IdentityUser user = new IdentityUser();
+                User user = new User();
                 user.UserName = "admin@gmail.com";
                 user.Email = "admin@gmail.com";
                 user.NormalizedUserName = "ADMIN@GMAIL.COM";
@@ -67,6 +71,9 @@ namespace CineRateHub.Services
                 user.EmailConfirmed = true;
                 user.LockoutEnabled = false;
                 user.SecurityStamp = Guid.NewGuid().ToString();
+                user.Name = "Admin";
+                user.Age = 22;
+                user.Job = "FullStackDev";
 
                 IdentityResult result = await _userManager.CreateAsync(user, "Numsey#2024");
 
