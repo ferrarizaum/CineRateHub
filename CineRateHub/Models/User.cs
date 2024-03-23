@@ -11,6 +11,6 @@ namespace CineRateHub.Models
 
         public string? Job { get; set; }
 
-       
+        public ICollection<Movie> Movies { get; set; } = new List<Movie>();
     }
 }

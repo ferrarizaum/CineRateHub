@@ -6,28 +6,18 @@ namespace CineRateHub.Models
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Title is required.")]
-        [StringLength(60, MinimumLength = 3)]
-        public required string Title { get; set; }
-
-        [Display(Name = "Release Date")]
-        [DataType(DataType.Date)]
+        public string? Title { get; set; }
+        
         public DateTime ReleaseDate { get; set; }
+       
+        public string? Genre { get; set; }
 
-        [Required]
-        [RegularExpression(@"^[A-Z]+[a-zA-Z\s]*$")]
-        [StringLength(30)]
-        public required string Genre { get; set; }
+        public string? Director { get; set; }
 
-        [Required]
-        [RegularExpression(@"^[A-Z]+[a-zA-Z\s]*$")]
-        [StringLength(30)]
-        public required string Director { get; set; }
+        public decimal? Rating { get; set; }
 
-        [Required]
-        [Range(1, 10)]
-        [DisplayFormat(DataFormatString = "{0:0.#}", ApplyFormatInEditMode = true)]
-        public required decimal Rating { get; set; }
+        public string? UserId { get; set; }
+        public User? User { get; set; }
     }
 }
  

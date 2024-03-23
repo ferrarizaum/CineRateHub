@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using CineRateHub.Data;
 using CineRateHub.Models;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CineRateHub.Controllers
 {   
@@ -20,7 +22,7 @@ namespace CineRateHub.Controllers
         // GET: Movies
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Movie.ToListAsync());
+            return View(await _context.Movie.Include(m => m.User).ToListAsync());
         }
 
         // GET: Movies/Details/5
@@ -52,10 +54,12 @@ namespace CineRateHub.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,ReleaseDate,Genre,Price,Rating")] Movie movie)
+        [Authorize]
+        public async Task<IActionResult> Create([Bind("Id,Title,ReleaseDate,Genre,Director,Price,Rating")] Movie movie)
         {
             if (ModelState.IsValid)
             {
+                movie.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 _context.Add(movie);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

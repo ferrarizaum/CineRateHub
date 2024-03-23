@@ -19,6 +19,11 @@ namespace CineRateHub.Data
             base.OnModelCreating(builder);
 
             builder.Entity<User>().ToTable("Users");
+
+            builder.Entity<Movie>()
+                .HasOne(m => m.User)
+                .WithMany(u => u.Movies)
+                .HasForeignKey(m => m.UserId);
         }
 
     }
