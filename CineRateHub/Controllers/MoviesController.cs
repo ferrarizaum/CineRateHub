@@ -44,6 +44,7 @@ namespace CineRateHub.Controllers
         }
 
         // GET: Movies/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -54,7 +55,8 @@ namespace CineRateHub.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        [Authorize]//user might try creating a movie rating by url while not logged in,
+                   //might break the app
         public async Task<IActionResult> Create([Bind("Id,Title,ReleaseDate,Genre,Director,Price,Rating")] Movie movie)
         {
             if (ModelState.IsValid)
