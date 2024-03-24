@@ -55,7 +55,7 @@ namespace CineRateHub.Services
 
                 IdentityResult result = await _userManager.CreateAsync(user, "Numsey#2024");
 
-                if(!result.Succeeded)
+                if(result.Succeeded)
                 {
                     await _userManager.AddToRoleAsync(user, "User");
                 }
@@ -77,7 +77,7 @@ namespace CineRateHub.Services
 
                 IdentityResult result = await _userManager.CreateAsync(user, "Numsey#2024");
 
-                if (!result.Succeeded)
+                if (result.Succeeded)
                 {
                     await _userManager.AddToRoleAsync(user, "Admin");
                 }
